@@ -2,7 +2,7 @@ package com.ivk.habbittrainer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +13,9 @@ class MainActivity : AppCompatActivity() {
 
         // Adapter -> defines data
         // RecyclerView -> implement 3 methods
+        rv.setHasFixedSize(true)
 
+        rv.layoutManager = LinearLayoutManager(this)
+        //rv.adapter = HabitsAdapter(getSampleHabits())
     }
 }
