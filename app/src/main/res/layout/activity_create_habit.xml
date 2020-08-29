@@ -28,7 +28,8 @@
         android:id="@+id/btn_choose_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/choose_image" />
+        android:text="@string/choose_image"
+        android:onClick="chooseImage"/>
 
     <ImageView
         android:id="@+id/iv_image"
