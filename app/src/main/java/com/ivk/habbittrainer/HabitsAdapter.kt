@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.single_card.view.*
 class HabitsAdapter(val habits: List<Habit>) : RecyclerView.Adapter<HabitsAdapter.HabitViewHolder>() {
 
     class HabitViewHolder(val card: View) : RecyclerView.ViewHolder(card)
-    
+
     // Create a new ViewHolder object
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.single_card, parent, false)
