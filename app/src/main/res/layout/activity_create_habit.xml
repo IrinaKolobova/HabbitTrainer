@@ -8,7 +8,7 @@
     tools:context=".CreateHabitActivity">
 
     <EditText
-        android:id="@+id/eet_title"
+        android:id="@+id/et_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/eat_an_apple"
@@ -34,7 +34,7 @@
     <ImageView
         android:id="@+id/iv_image"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:padding="10dp"
         android:contentDescription="@string/selected_image"/>
@@ -43,7 +43,8 @@
         android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/save_habit" />
+        android:text="@string/save_habit"
+        android:onClick="storeHabit"/>
 
     <TextView
         android:id="@+id/tv_error"
