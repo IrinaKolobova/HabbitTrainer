@@ -1,7 +1,10 @@
 package com.ivk.habbittrainer
 
-data class Habit(val title: String, val description: String, val image: Int)
+import android.graphics.Bitmap
 
+data class Habit(val title: String, val description: String, val image: Bitmap)
+
+/*
 fun getSampleHabits() : List<Habit> {
     return listOf(
         Habit("Go for a walk",
@@ -12,4 +15,4 @@ fun getSampleHabits() : List<Habit> {
                 "A refreshing glass of water gets you hydrated",
                 R.drawable.water)
     )
-}
+}*/
