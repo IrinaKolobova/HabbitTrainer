@@ -7,9 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper
 class HabitTrainerDb(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     private val SQL_CREATE_ENTRIES = "CREATE TABLE ${HabitEntry.TABLE_NAME} (" +
-            "${HabitEntry._ID} INTEGER PRIMARY KEY" +
-            "${HabitEntry.TITLE_COL} TEXT" +
-            "${HabitEntry.DESCR_COL} TEXT" +
+            "${HabitEntry._ID} INTEGER PRIMARY KEY, " +
+            "${HabitEntry.TITLE_COL} TEXT, " +
+            "${HabitEntry.DESCR_COL} TEXT, " +
             "${HabitEntry.IMAGE_COL} BLOB" +
             ")"
 
