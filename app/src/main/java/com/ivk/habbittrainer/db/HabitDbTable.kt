@@ -4,14 +4,11 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteQueryBuilder
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import com.ivk.habbittrainer.Habit
-import com.ivk.habbittrainer.HabitsAdapter
 import java.io.ByteArrayOutputStream
-import java.nio.ByteOrder
 
 class HabitDbTable(context: Context) {
 
@@ -59,16 +56,18 @@ class HabitDbTable(context: Context) {
 
         val cursor = db.doQuery(HabitEntry.TABLE_NAME, columns, orderBy = order)
 
+        return parseHabitsFrom(cursor)
+    }
+
+    private fun parseHabitsFrom(cursor: Cursor): MutableList<Habit> {
         val habits = mutableListOf<Habit>()
         while (cursor.moveToNext()) {
-            val title = cursor.getString(cursor.getColumnIndex(HabitEntry.TITLE_COL))
-            val desc = cursor.getString(cursor.getColumnIndex(HabitEntry.DESCR_COL))
-            val byteArray = cursor.getBlob(cursor.getColumnIndex(HabitEntry.IMAGE_COL))
-            val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+            val title = cursor.getString(HabitEntry.TITLE_COL)
+            val desc = cursor.getString(HabitEntry.DESCR_COL)
+            val bitmap = cursor.getBitmap(HabitEntry.IMAGE_COL)
             habits.add(Habit(title, desc, bitmap))
         }
         cursor.close()
-
         return habits
     }
 
@@ -84,6 +83,13 @@ private fun SQLiteDatabase.doQuery(table: String, columns: Array<String>,
                                    selection: String? = null, selectionArgs: Array<String>? = null,
                                    groupBy: String? = null, having: String? = null, orderBy: String? = null):  Cursor {
     return query(table, columns, selection, selectionArgs, groupBy, having, orderBy)
+}
+
+private fun Cursor.getString(columnName: String): String = this.getString(getColumnIndex(columnName))
+
+private fun Cursor.getBitmap(columnName: String): Bitmap {
+    val bytes = getBlob(getColumnIndex(columnName))
+    return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
 }
 
 private inline fun <T> SQLiteDatabase.transaction(function: SQLiteDatabase.() -> T): T {
